@@ -28,22 +28,12 @@ public class BowlingGame {
     		   if(bowGrid[iTmp].equals("X")){
     			   GridScore += 10;
         		   iTmp++;
-        		   
-        		   if(bowGrid[iTmp].equals("X")){
-        			   GridScore += 10;
-        		   }else{
-        			   if((bowGrid[iTmp].charAt(0))>='1'&&(bowGrid[iTmp].charAt(0))<='9'){
-        				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(0))+""));
-        			   }
-        		   }
+        		   GridScore += judgeXOrChGreater1AndLess9(bowGrid[iTmp],1);
     		   }else{
     			   if((bowGrid[iTmp].charAt(1))=='/'){
     				   GridScore += 10;
     			   }else{
-    				   for(int l=0;l<2;l++){
-    					   if((bowGrid[iTmp].charAt(l))>='1'&&(bowGrid[iTmp].charAt(l))<='9')
-            				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(l))+""));
-    				   }
+    				   GridScore += judgeChGreater1AndLess9(bowGrid[iTmp], 2);
     			   }
     		   }
     		   
@@ -51,26 +41,17 @@ public class BowlingGame {
     		   if((bowGrid[iTmp].charAt(1))=='/'){
     			   GridScore += 10;
     			   iTmp++;
-    			   if(bowGrid[iTmp].equals("X")){
-    				   GridScore += 10;
-    			   }else{
-    				   if((bowGrid[iTmp].charAt(0))>='1'&&(bowGrid[iTmp].charAt(0))<='9')
-        				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(0))+""));
-    			   }
+    			   GridScore += judgeXOrChGreater1AndLess9(bowGrid[iTmp],1);
     		   
     		   }else{
-    			   for(int l=0;l<2;l++){
-					   if((bowGrid[iTmp].charAt(l))>='1'&&(bowGrid[iTmp].charAt(l))<='9')
-        				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(l))+""));
-				   }
+    			   GridScore += judgeChGreater1AndLess9(bowGrid[iTmp], 2);
     		   }
     	   }
     	   
     	   sum += GridScore;
        }
        
-       
-       
+
        for(int i = n-2; i < n; i++){
     	   int GridScore = 0;
     	   int iTmp = i;
@@ -79,35 +60,19 @@ public class BowlingGame {
     			   if(bowGrid[iTmp].equals("X")){
     				   GridScore += 20;
         			   iTmp += 2;
-        			   if(bowGrid[iTmp].charAt(0)=='X'){
-        				   GridScore += 10;
-        			   }else{
-        				   if((bowGrid[iTmp].charAt(0))>='1'&&(bowGrid[iTmp].charAt(0))<='9')
-            				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(0))+""));
-        			   }
+        			   GridScore += judgeXOrChGreater1AndLess9(bowGrid[iTmp],1);
     			   }else{
     				   if((bowGrid[iTmp].charAt(1))=='/'){
     					   GridScore += 20;
     				   }else{
-    					   for(int l=0;l<2;l++){
-        					   if((bowGrid[iTmp].charAt(l))>='1'&&(bowGrid[iTmp].charAt(l))<='9')
-                				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(l))+""));
-        				   }
+    					   GridScore += judgeChGreater1AndLess9(bowGrid[iTmp], 2);
     				   }
     			   }
     			  
     		   }else{
     			   GridScore += 10;
     			   iTmp++;
-    			   for(int l=0;l<2;l++){
-					   if(bowGrid[iTmp].charAt(l)=='X'){
-						   GridScore += 10;
-					   }else{
-						   if((bowGrid[iTmp].charAt(l))>='1'&&(bowGrid[iTmp].charAt(l))<='9'){
-							   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(l))+""));
-						   }
-					   }
-				   }
+    			   GridScore += judgeXOrChGreater1AndLess9(bowGrid[iTmp],2);
     		   }
     		 
     	   }else{
@@ -119,25 +84,15 @@ public class BowlingGame {
         				   if((bowGrid[iTmp].charAt(1))=='/'){
         					   GridScore += 10;
         					   iTmp++;
-        					   if((bowGrid[iTmp].charAt(0))>='1'&&(bowGrid[iTmp].charAt(0))<='9')
-                				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(0))+""));
+        					   GridScore += judgeChGreater1AndLess9(bowGrid[iTmp], 1);
         				   }else{
-        					   for(int l=0;l<2;l++){
-            					   if((bowGrid[iTmp].charAt(l))>='1'&&(bowGrid[iTmp].charAt(l))<='9')
-                    				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(l))+""));
-            				   }
+        					   GridScore += judgeChGreater1AndLess9(bowGrid[iTmp], 2);
         				   }
         			   }
     			   }else{
     				   GridScore += 10;
     				   iTmp++;
-    				   if(bowGrid[iTmp].equals("X")){
-						   GridScore += 10;
-					   }else{
-						   if((bowGrid[iTmp].charAt(0))>='1'&&(bowGrid[iTmp].charAt(0))<='9'){
-							   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(0))+""));
-						   }
-					   }
+    				   GridScore += judgeXOrChGreater1AndLess9(bowGrid[iTmp],1);
     			   }
     			   
     		   }else{
@@ -145,36 +100,57 @@ public class BowlingGame {
     				   if(bowGrid[iTmp].equals("X")){
     					   GridScore += 10;
     					   iTmp++;
-    					   for(int l=0;l<2;l++){
-        					   if((bowGrid[iTmp].charAt(l))>='1'&&(bowGrid[iTmp].charAt(l))<='9')
-                				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(l))+""));
-        				   }
+    					   GridScore += judgeChGreater1AndLess9(bowGrid[iTmp], 2);
         			   }else{
         				   if((bowGrid[iTmp].charAt(1))=='/'){
         					   GridScore += 10;
         					   iTmp++;
-        					   if((bowGrid[iTmp].charAt(0))>='1'&&(bowGrid[iTmp].charAt(0))<='9')
-                				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(0))+""));
+        					   GridScore += judgeChGreater1AndLess9(bowGrid[iTmp], 1);
         				   }else{
-        					   for(int l=0;l<2;l++){
-            					   if((bowGrid[iTmp].charAt(l))>='1'&&(bowGrid[iTmp].charAt(l))<='9')
-                    				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(l))+""));
-            				   }
+        					   GridScore += judgeChGreater1AndLess9(bowGrid[iTmp], 2);
         				   }
         			   } 
     			   }else{
-    				   for(int l=0;l<2;l++){
-    					   if((bowGrid[iTmp].charAt(l))>='1'&&(bowGrid[iTmp].charAt(l))<='9')
-            				   GridScore += (Integer.parseInt((bowGrid[iTmp].charAt(l))+""));
-    				   }
+    				   GridScore += judgeChGreater1AndLess9(bowGrid[iTmp], 2);
     			   }
     		   }
     	   }
-    	   
-    	   
+
     	   sum += GridScore;
        }
         
         return sum;
+    }
+    
+    /**
+     * judge char in a String    ch>='1' &&  ch<='9'  
+     * @param str  To judge String
+     * @param cyclesCunt  
+     * @return  The corresponding score
+     */
+    public int judgeChGreater1AndLess9(String str, int cyclesCunt){
+    	int score = 0;
+    	for(int l = 0; l < cyclesCunt; l++){
+    		if(str.charAt(l) >= '1' && str.charAt(l) <= '9')
+        		score += (Integer.parseInt(str.charAt(l)+""));
+    	}
+    	return score;
+    }
+    
+    /**
+     * The third judge   char in a String,  ch =='X'  or   ch>='1' &&  ch<='9'  
+     * @param str  To judge String
+     * @param cyclesCunt 
+     * @return  The corresponding score
+     */
+    public int judgeXOrChGreater1AndLess9(String str,int cyclesCunt){
+    	int score = 0;
+    	for(int l = 0; l < cyclesCunt; l++){
+    		if(str.charAt(l)==('X'))
+        		score += 10;
+        	else
+        		score += judgeChGreater1AndLess9(str.charAt(l)+"",1);
+    	}
+    	return score;
     }
 }
